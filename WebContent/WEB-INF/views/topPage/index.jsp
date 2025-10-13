@@ -9,6 +9,43 @@
             </div>
         </c:if>
         <h2>日報管理システムへようこそ</h2>
+        <h3>【今日のプラン】</h3>
+        <c:choose>
+            <c:when test="${today_plan != null}">
+                <table id="today_plan_table">
+                    <tbody>
+                        <tr>
+                            <th class="plan_table_label">近い将来の目標</th>
+                            <td><c:out value="${today_plan.near_future_goal}" /></td>
+                        </tr>
+                        <tr>
+                            <th class="plan_table_label">今日の目標</th>
+                            <td><c:out value="${today_plan.today_goal}" /></td>
+                        </tr>
+                        <tr>
+                            <th class="plan_table_label">今日やること</th>
+                            <td>
+                                <ul class="task_list">
+                                    <c:forEach var="task" items="${today_tasks}">
+                                        <c:if test="${not empty task}">
+                                            <li><c:out value="${task}" /></li>
+                                        </c:if>
+                                    </c:forEach>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="plan_table_label">今日の振り返り</th>
+                            <td><pre><c:out value="${today_plan.reflection}" /></pre></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><a href="<c:url value='/dailyplans/show?id=${today_plan.id}' />">プランの詳細を見る</a></p>
+            </c:when>
+            <c:otherwise>
+                <p>まだ今日のプランが登録されていません。<a href="<c:url value='/dailyplans/new' />">作成する</a></p>
+            </c:otherwise>
+        </c:choose>
         <h3>【自分の日報 一覧】</h3>
         <table id="report_list">
             <tbody>
