@@ -78,8 +78,9 @@ button {
     color: #155724;
     background-color: #d4edda;
 }
-@flush_error {
-        width: 100%;
+
+#flush_error {
+    width: 100%;
     padding-top: 28px;
     padding-left: 2%;
     padding-bottom: 28px;
@@ -177,4 +178,45 @@ p.note {
     font-size: 12px;
     color: #555555;
     margin-top: 5px;
+}
+
+.plan-preview {
+    margin-top: 25px;
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.plan-preview h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.plan-preview-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.plan-preview-table th,
+.plan-preview-table td {
+    padding: 8px 10px;
+    border: 1px solid #dddddd;
+    vertical-align: top;
+    word-break: break-word;
+}
+
+.plan-preview-table pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.plan-preview-empty {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #777777;
+}
+
+ul.task_list li.empty {
+    color: #888888;
 }
