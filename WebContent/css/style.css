@@ -136,3 +136,45 @@ table#report_list .report_action {
 pre {
         font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
 }
+
+ul.task_list {
+    margin-left: 20px;
+    list-style: disc;
+}
+
+table#plan_list th {
+    font-weight: bold;
+}
+
+table#plan_list .plan_date {
+    width: 18%;
+}
+
+table#plan_list .plan_near_goal {
+    width: 32%;
+}
+
+table#plan_list .plan_today_goal {
+    width: 32%;
+}
+
+table#plan_list .plan_action {
+    width: 18%;
+    text-align: center;
+}
+
+#today_plan_table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#today_plan_table .plan_table_label {
+    width: 25%;
+    font-weight: bold;
+}
+
+p.note {
+    font-size: 12px;
+    color: #555555;
+    margin-top: 5px;
+}

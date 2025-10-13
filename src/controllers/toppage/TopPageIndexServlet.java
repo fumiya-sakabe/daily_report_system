@@ -1,9 +1,12 @@
 package controllers.toppage;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.DailyPlan;
 import models.Employee;
 import models.Report;
 import utils.DButil;
@@ -54,11 +58,25 @@ public class TopPageIndexServlet extends HttpServlet {
                                      .setParameter("employee", login_employee)
                                      .getSingleResult();
 
+        DailyPlan todayPlan = null;
+        try {
+            todayPlan = em.createNamedQuery("getMyDailyPlanByDate", DailyPlan.class)
+                          .setParameter("employee", login_employee)
+                          .setParameter("plan_date", new Date(System.currentTimeMillis()))
+                          .getSingleResult();
+        } catch(NoResultException e) {
+            todayPlan = null;
+        }
+
         em.close();
 
         request.setAttribute("reports", reports);
         request.setAttribute("reports_count", reports_count);
         request.setAttribute("page", page);
+        request.setAttribute("today_plan", todayPlan);
+        if(todayPlan != null) {
+            request.setAttribute("today_tasks", Arrays.asList(todayPlan.getTasks().split("\n", -1)));
+        }
 
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
